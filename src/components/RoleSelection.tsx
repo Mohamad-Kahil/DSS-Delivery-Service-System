@@ -83,7 +83,7 @@ const RoleSelection = ({
         variants={container}
         initial="hidden"
         animate="show"
-        className="flex flex-wrap justify-center gap-8 max-w-[1200px]"
+        className="flex flex-row justify-center gap-8 max-w-[1600px]"
       >
         {roles.map((role, index) => (
           <motion.div key={index} variants={item} className="mb-8">

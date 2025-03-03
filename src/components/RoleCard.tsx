@@ -41,15 +41,15 @@ const RoleCard = ({
   const getCardStyle = () => {
     switch (icon) {
       case "admin":
-        return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-emerald-500/20";
+        return "w-[280px] h-[350px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-emerald-500/20";
       case "client":
-        return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-blue-500/20";
+        return "w-[280px] h-[350px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-blue-500/20";
       case "customer":
-        return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-purple-500/20";
+        return "w-[280px] h-[350px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-purple-500/20";
       case "driver":
-        return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-cyan-500/20";
+        return "w-[280px] h-[350px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-cyan-500/20";
       default:
-        return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-primary/20";
+        return "w-[280px] h-[350px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-primary/20";
     }
   };
 
