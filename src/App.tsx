@@ -7,6 +7,9 @@ const AdminDashboard = lazy(() => import("./components/admin/AdminDashboard"));
 const ClientDashboard = lazy(
   () => import("./components/client/ClientDashboard"),
 );
+const CustomerDashboard = lazy(
+  () => import("./components/customer/CustomerDashboard"),
+);
 
 function App() {
   return (
@@ -16,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/client" element={<ClientDashboard />} />
+          <Route path="/customer" element={<CustomerDashboard />} />
           {import.meta.env.VITE_TEMPO === "true" && (
             <Route path="/tempobook/*" />
           )}
