@@ -1,13 +1,14 @@
 import React from "react";
 import RoleCard from "./RoleCard";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 interface RoleSelectionProps {
   onRoleSelect?: (role: string) => void;
   roles?: Array<{
     title: string;
     description: string;
-    icon: "admin" | "client" | "customer";
+    icon: "admin" | "client" | "customer" | "driver";
   }>;
 }
 
@@ -32,8 +33,16 @@ const RoleSelection = ({
         "Track your delivery in real-time, view ETA updates, and communicate with drivers or support.",
       icon: "customer",
     },
+    {
+      title: "Driver",
+      description:
+        "Accept delivery orders, navigate routes, track earnings, and manage your delivery schedule.",
+      icon: "driver",
+    },
   ],
 }: RoleSelectionProps) => {
+  const navigate = useNavigate();
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -47,6 +56,11 @@ const RoleSelection = ({
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
+  };
+
+  const handleRoleSelect = (role: string) => {
+    onRoleSelect(role);
+    navigate(`/${role.toLowerCase()}`);
   };
 
   return (
@@ -77,7 +91,7 @@ const RoleSelection = ({
               title={role.title}
               description={role.description}
               icon={role.icon}
-              onAccess={() => onRoleSelect(role.title.toLowerCase())}
+              onAccess={() => handleRoleSelect(role.title.toLowerCase())}
             />
           </motion.div>
         ))}

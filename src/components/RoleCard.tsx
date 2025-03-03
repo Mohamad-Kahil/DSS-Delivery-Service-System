@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,13 +7,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../components/ui/card";
-import { Shield, Users, User } from "lucide-react";
+} from "@/components/ui/card";
+import { Shield, Users, User, Truck } from "lucide-react";
 
 interface RoleCardProps {
   title: string;
   description: string;
-  icon: "admin" | "client" | "customer";
+  icon: "admin" | "client" | "customer" | "driver";
   onAccess?: () => void;
 }
 
@@ -31,6 +31,8 @@ const RoleCard = ({
         return <Users className="h-12 w-12 text-blue-500" />;
       case "customer":
         return <User className="h-12 w-12 text-purple-500" />;
+      case "driver":
+        return <Truck className="h-12 w-12 text-cyan-500" />;
       default:
         return <Shield className="h-12 w-12 text-primary" />;
     }
@@ -44,6 +46,8 @@ const RoleCard = ({
         return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-blue-500/20";
       case "customer":
         return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-purple-500/20";
+      case "driver":
+        return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-cyan-500/20";
       default:
         return "w-[350px] h-[400px] flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 border-primary/20";
     }
@@ -67,7 +71,15 @@ const RoleCard = ({
       <CardFooter className="pt-2 pb-6 flex justify-center">
         <Button
           onClick={onAccess}
-          className={`w-full py-6 ${icon === "admin" ? "bg-emerald-500 hover:bg-emerald-600" : icon === "client" ? "bg-blue-500 hover:bg-blue-600" : "bg-purple-500 hover:bg-purple-600"}`}
+          className={`w-full py-6 ${
+            icon === "admin"
+              ? "bg-emerald-500 hover:bg-emerald-600"
+              : icon === "client"
+                ? "bg-blue-500 hover:bg-blue-600"
+                : icon === "driver"
+                  ? "bg-cyan-500 hover:bg-cyan-600"
+                  : "bg-purple-500 hover:bg-purple-600"
+          }`}
         >
           Access {title} Dashboard
         </Button>
