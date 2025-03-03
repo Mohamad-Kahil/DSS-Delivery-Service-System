@@ -5,6 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
 import {
   Table,
@@ -27,6 +28,23 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Users,
   Search,
@@ -134,9 +152,126 @@ const PersonnelManagement = () => {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-emerald-500 hover:bg-emerald-600">
-            <UserPlus className="mr-2 h-4 w-4" /> Add Personnel
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <UserPlus className="mr-2 h-4 w-4" /> Add Personnel
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Add New Personnel</DialogTitle>
+                <DialogDescription>
+                  Enter the details of the new staff member to add to your team.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    Full Name
+                  </Label>
+                  <Input
+                    id="name"
+                    placeholder="John Doe"
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="role" className="text-right">
+                    Role
+                  </Label>
+                  <Select defaultValue="Driver">
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Select role" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Driver">Driver</SelectItem>
+                      <SelectItem value="Dispatcher">Dispatcher</SelectItem>
+                      <SelectItem value="Maintenance Technician">
+                        Maintenance Technician
+                      </SelectItem>
+                      <SelectItem value="Customer Service">
+                        Customer Service
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="status" className="text-right">
+                    Status
+                  </Label>
+                  <Select defaultValue="active">
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="on-leave">On Leave</SelectItem>
+                      <SelectItem value="inactive">Inactive</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="email" className="text-right">
+                    Email
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="john.doe@example.com"
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="phone" className="text-right">
+                    Phone
+                  </Label>
+                  <Input
+                    id="phone"
+                    placeholder="(555) 123-4567"
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="hireDate" className="text-right">
+                    Hire Date
+                  </Label>
+                  <Input id="hireDate" type="date" className="col-span-3" />
+                </div>
+              </div>
+              <DialogFooter className="flex space-x-2 justify-end">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    const closeButton = document.querySelector(
+                      '[data-state="open"] button[aria-label="Close"]',
+                    );
+                    if (closeButton) {
+                      (closeButton as HTMLButtonElement).click();
+                    }
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="button"
+                  className="bg-emerald-500 hover:bg-emerald-600"
+                  onClick={() => {
+                    // Close the dialog after adding
+                    const closeButton = document.querySelector(
+                      '[data-state="open"] button[aria-label="Close"]',
+                    );
+                    if (closeButton) {
+                      (closeButton as HTMLButtonElement).click();
+                    }
+                  }}
+                >
+                  Save Personnel
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 
