@@ -16,6 +16,9 @@ import {
   Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import FleetManagement from "./fleet/FleetManagement";
+import PersonnelManagement from "./personnel/PersonnelManagement";
+import AnalyticsDashboard from "./analytics/AnalyticsDashboard";
 
 const AdminDashboard = () => {
   return (
@@ -156,51 +159,15 @@ const AdminDashboard = () => {
           </TabsContent>
 
           <TabsContent value="fleet" className="space-y-4">
-            <Card className="bg-card border-primary/20">
-              <CardHeader>
-                <CardTitle>Fleet Management</CardTitle>
-                <CardDescription>
-                  Manage your delivery vehicles and track their status
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Fleet management content will be displayed here.
-                </p>
-              </CardContent>
-            </Card>
+            <FleetManagement />
           </TabsContent>
 
           <TabsContent value="personnel" className="space-y-4">
-            <Card className="bg-card border-primary/20">
-              <CardHeader>
-                <CardTitle>Personnel Management</CardTitle>
-                <CardDescription>
-                  Manage drivers, dispatchers and other staff
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Personnel management content will be displayed here.
-                </p>
-              </CardContent>
-            </Card>
+            <PersonnelManagement />
           </TabsContent>
 
           <TabsContent value="analytics" className="space-y-4">
-            <Card className="bg-card border-primary/20">
-              <CardHeader>
-                <CardTitle>Analytics & Reporting</CardTitle>
-                <CardDescription>
-                  View detailed performance metrics and generate reports
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Analytics content will be displayed here.
-                </p>
-              </CardContent>
-            </Card>
+            <AnalyticsDashboard />
           </TabsContent>
 
           <TabsContent value="settings" className="space-y-4">
