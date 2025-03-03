@@ -5,6 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
 import {
   Table,
@@ -28,6 +29,23 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Truck,
   Search,
   Plus,
@@ -38,6 +56,8 @@ import {
   AlertTriangle,
   CheckCircle2,
   Wrench,
+  Bike,
+  Car,
 } from "lucide-react";
 import { vehicles } from "@/data/vehicles";
 
@@ -93,9 +113,127 @@ const FleetManagement = () => {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button className="bg-emerald-500 hover:bg-emerald-600">
-            <Plus className="mr-2 h-4 w-4" /> Add Vehicle
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="bg-emerald-500 hover:bg-emerald-600">
+                <Plus className="mr-2 h-4 w-4" /> Add Vehicle
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Add New Vehicle</DialogTitle>
+                <DialogDescription>
+                  Enter the details of the new vehicle to add to your fleet.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    Name
+                  </Label>
+                  <Input
+                    id="name"
+                    placeholder="Delivery Van 6"
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="type" className="text-right">
+                    Type
+                  </Label>
+                  <Select defaultValue="car">
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Select vehicle type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="motorbike">Motorbike</SelectItem>
+                      <SelectItem value="car">Car</SelectItem>
+                      <SelectItem value="suv">SUV</SelectItem>
+                      <SelectItem value="van">Van</SelectItem>
+                      <SelectItem value="small-truck">Small Truck</SelectItem>
+                      <SelectItem value="medium-truck">Medium Truck</SelectItem>
+                      <SelectItem value="large-truck">Large Truck</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="status" className="text-right">
+                    Status
+                  </Label>
+                  <Select defaultValue="active">
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="maintenance">Maintenance</SelectItem>
+                      <SelectItem value="inactive">Inactive</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="driver" className="text-right">
+                    Driver
+                  </Label>
+                  <Select defaultValue="unassigned">
+                    <SelectTrigger className="col-span-3">
+                      <SelectValue placeholder="Assign driver (optional)" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="unassigned">Unassigned</SelectItem>
+                      <SelectItem value="john-smith">John Smith</SelectItem>
+                      <SelectItem value="sarah-johnson">
+                        Sarah Johnson
+                      </SelectItem>
+                      <SelectItem value="michael-brown">
+                        Michael Brown
+                      </SelectItem>
+                      <SelectItem value="david-wilson">David Wilson</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="mileage" className="text-right">
+                    Mileage
+                  </Label>
+                  <Input
+                    id="mileage"
+                    type="number"
+                    placeholder="0"
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="fuel" className="text-right">
+                    Fuel Level
+                  </Label>
+                  <Input
+                    id="fuel"
+                    type="number"
+                    placeholder="100"
+                    className="col-span-3"
+                  />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button
+                  type="button"
+                  className="bg-emerald-500 hover:bg-emerald-600"
+                  onClick={() => {
+                    // Close the dialog after adding
+                    const closeButton = document.querySelector(
+                      '[data-state="open"] button[aria-label="Close"]',
+                    );
+                    if (closeButton) {
+                      (closeButton as HTMLButtonElement).click();
+                    }
+                  }}
+                >
+                  Add Vehicle
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 
