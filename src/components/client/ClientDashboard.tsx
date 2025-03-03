@@ -16,6 +16,9 @@ import {
   Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import DeliveryTracking from "./tracking/DeliveryTracking";
+import MessageCenter from "./communication/MessageCenter";
+import BillingManagement from "./billing/BillingManagement";
 
 const ClientDashboard = () => {
   return (
@@ -214,53 +217,15 @@ const ClientDashboard = () => {
           </TabsContent>
 
           <TabsContent value="tracking" className="space-y-4">
-            <Card className="bg-card border-blue-500/20">
-              <CardHeader>
-                <CardTitle>Delivery Tracking</CardTitle>
-                <CardDescription>
-                  Track your active deliveries in real-time
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[400px] w-full bg-card/50 rounded-md flex items-center justify-center border border-border/30">
-                  <p className="text-muted-foreground">
-                    Interactive Tracking Map
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <DeliveryTracking />
           </TabsContent>
 
           <TabsContent value="communication" className="space-y-4">
-            <Card className="bg-card border-blue-500/20">
-              <CardHeader>
-                <CardTitle>Message Center</CardTitle>
-                <CardDescription>
-                  Communicate with delivery teams and support
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Communication center will be displayed here.
-                </p>
-              </CardContent>
-            </Card>
+            <MessageCenter />
           </TabsContent>
 
           <TabsContent value="billing" className="space-y-4">
-            <Card className="bg-card border-blue-500/20">
-              <CardHeader>
-                <CardTitle>Invoices & Payments</CardTitle>
-                <CardDescription>
-                  Manage your billing information and payment history
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Billing information will be displayed here.
-                </p>
-              </CardContent>
-            </Card>
+            <BillingManagement />
           </TabsContent>
         </Tabs>
       </div>
