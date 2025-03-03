@@ -40,7 +40,7 @@ const SignIn = () => {
           app_metadata: {},
           aud: "authenticated",
           created_at: new Date().toISOString(),
-        } as User;
+        };
 
         setUser(mockUser);
         navigate("/");

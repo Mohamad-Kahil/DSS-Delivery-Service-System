@@ -139,9 +139,61 @@ const availableDrivers = [
   },
 ];
 
-const DriverAssignment = () => {
+export default function DriverAssignment() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedOrder, setSelectedOrder] = useState(pendingOrders[0]);
   const [selectedDriver, setSelectedDriver] = useState<string | null>(null);
 
-  const filteredOrders = pendingOr
+  const filteredOrders = pendingOrders.filter(
+    (order) =>
+      order.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      order.clientName.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
+  return (
+    <div className="space-y-4">
+      <h2 className="text-2xl font-bold">Driver Assignment</h2>
+      <p className="text-muted-foreground">Assign drivers to pending orders</p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Pending Orders</CardTitle>
+            <CardDescription>
+              Orders waiting for driver assignment
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {filteredOrders.map((order) => (
+                <div key={order.id} className="p-4 border rounded-md">
+                  <h3 className="font-medium">{order.orderId}</h3>
+                  <p className="text-sm">{order.clientName}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Available Drivers</CardTitle>
+            <CardDescription>Drivers ready for assignment</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {availableDrivers
+                .filter((driver) => driver.status === "available")
+                .map((driver) => (
+                  <div key={driver.id} className="p-4 border rounded-md">
+                    <h3 className="font-medium">{driver.name}</h3>
+                    <p className="text-sm">{driver.vehicle}</p>
+                  </div>
+                ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}

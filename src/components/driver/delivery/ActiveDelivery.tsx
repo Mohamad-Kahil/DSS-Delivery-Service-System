@@ -104,7 +104,14 @@ const ActiveDelivery = () => {
     }).format(amount);
   };
 
-  const updateDeliveryStatus = (newStatus: string) => {
+  const updateDeliveryStatus = (
+    newStatus:
+      | "accepted"
+      | "picked-up"
+      | "in-transit"
+      | "delivered"
+      | "cancelled",
+  ) => {
     // In a real app, this would update the status in the backend
     setDeliveryStatus(newStatus);
   };

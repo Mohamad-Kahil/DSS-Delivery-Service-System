@@ -238,7 +238,7 @@ const DriverDashboard = () => {
                   </div>
                   <p className="text-xs text-muted-foreground">
                     {activeDelivery
-                      ? `${activeDelivery.route.distanceRemaining} miles remaining`
+                      ? `${activeDelivery.route.distance} miles remaining`
                       : "No active deliveries"}
                   </p>
                 </CardContent>
