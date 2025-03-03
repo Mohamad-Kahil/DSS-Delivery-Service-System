@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -19,8 +20,21 @@ import { Button } from "@/components/ui/button";
 import DeliveryTracking from "./tracking/DeliveryTracking";
 import MessageCenter from "./communication/MessageCenter";
 import BillingManagement from "./billing/BillingManagement";
+import CreateOrderDialog from "./orders/CreateOrderDialog";
+import TrackingDialog from "./tracking/TrackingDialog";
+import SupportDialog from "./communication/SupportDialog";
+import InvoicesDialog from "./billing/InvoicesDialog";
 
 const ClientDashboard = () => {
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState("orders");
+
+  // Check if we need to activate a specific tab based on navigation state
+  useEffect(() => {
+    if (location.state && location.state.activeTab) {
+      setActiveTab(location.state.activeTab);
+    }
+  }, [location]);
   return (
     <div className="flex flex-col w-full min-h-screen bg-background">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -40,7 +54,11 @@ const ClientDashboard = () => {
           </div>
         </div>
 
-        <Tabs defaultValue="orders" className="space-y-4">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-4"
+        >
           <TabsList className="bg-card border border-border/30">
             <TabsTrigger value="orders">Orders</TabsTrigger>
             <TabsTrigger value="tracking">Tracking</TabsTrigger>
@@ -186,30 +204,10 @@ const ClientDashboard = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
-                      <Package className="mr-2 h-4 w-4" /> Create New Order
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full border-blue-500/30 text-foreground hover:bg-blue-500/10"
-                    >
-                      <Map className="mr-2 h-4 w-4 text-blue-500" /> Track
-                      Active Deliveries
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full border-blue-500/30 text-foreground hover:bg-blue-500/10"
-                    >
-                      <MessageSquare className="mr-2 h-4 w-4 text-blue-500" />{" "}
-                      Contact Support
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full border-blue-500/30 text-foreground hover:bg-blue-500/10"
-                    >
-                      <FileText className="mr-2 h-4 w-4 text-blue-500" /> View
-                      Invoices
-                    </Button>
+                    <CreateOrderDialog />
+                    <TrackingDialog />
+                    <SupportDialog />
+                    <InvoicesDialog />
                   </div>
                 </CardContent>
               </Card>
